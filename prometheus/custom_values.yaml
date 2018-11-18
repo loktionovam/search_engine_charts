@@ -836,7 +836,7 @@ serverFiles:
             regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_service_label_app, __meta_kubernetes_namespace]
             action: keep
-            regex: search_engine;(production|staging)+
+            regex: search-engine;(production|staging)+
           - source_labels: [__meta_kubernetes_namespace]
             target_label: kubernetes_namespace
           - source_labels: [__meta_kubernetes_service_name]
