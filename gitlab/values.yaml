@@ -25,3 +25,8 @@ gitlab:
 gitlab-runner:
   runners:
     privileged: true
+
+nginx-ingress:
+  controller:
+    scope:
+      enabled: false
