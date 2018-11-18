@@ -1,0 +1,7 @@
+---
+name: search_engine_grafana
+version: 0.1.0
+description: Search engine grafana helm wrapper
+maintainers:
+  - name: Aleksandr Loktionov
+    email: loktionovam@gmail.com
