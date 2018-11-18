@@ -828,6 +828,48 @@ serverFiles:
             action: replace
             target_label: kubernetes_pod_name
 
+      - job_name: 'search-engine-production'
+        kubernetes_sd_configs:
+          - role: endpoints
+        relabel_configs:
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
+          - source_labels: [__meta_kubernetes_service_label_app, __meta_kubernetes_namespace]
+            action: keep
+            regex: search-engine;(production|staging)+
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_service_name]
+            target_label: kubernetes_name
+
+      - job_name: 'crawler-endpoints'
+        kubernetes_sd_configs:
+          - role: endpoints
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_label_component]
+            action: keep
+            regex: crawler
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_service_name]
+            target_label: kubernetes_name
+
+      - job_name: 'ui-endpoints'
+        kubernetes_sd_configs:
+          - role: endpoints
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_label_component]
+            action: keep
+            regex: ui
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_service_name]
+            target_label: kubernetes_name
+
 networkPolicy:
   ## Enable creation of NetworkPolicy resources.
   ##
