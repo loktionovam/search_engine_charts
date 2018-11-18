@@ -7,6 +7,7 @@
 ## [Unreleased]
 ### Added
 
+- staging, production k8s namespaces в gitlab CI
 - search-engine-production, crawler-endpoints, ui-endpoints prometheus jobs
 
 ## [2.0.0] - 2018-11-14
