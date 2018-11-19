@@ -5,11 +5,14 @@ dependencies:
 - name: crawler
   repository: file://../crawler
   version: 1.0.0
+- name: mongodb-exporter
+  repository: file://../mongodb_exporter
+  version: 1.0.0
 - name: rabbitmq
   repository: https://kubernetes-charts.storage.googleapis.com
   version: 0.6.7
 - name: mongodb
   repository: https://kubernetes-charts.storage.googleapis.com
   version: 0.4.18
-digest: sha256:47ddc75fe3a9f42ce582eac7f1390bd2e8530f1cc76ff3cd6b47091e2d460a9b
-generated: 2018-11-08T12:17:45.458400267Z
+digest: sha256:126e95c249f5c291f675e43c7dd6e9ef574c80ff8beca5fa86ea3e95213756ba
+generated: 2018-11-20T01:17:16.243030263+07:00

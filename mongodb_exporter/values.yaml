@@ -1,0 +1,10 @@
+---
+service:
+  internalPort: 9216
+  externalPort: 9216
+
+image:
+  repository: loktionovam/mongodb_exporter
+  tag: "0.6.1"
+
+mongodb_url:
