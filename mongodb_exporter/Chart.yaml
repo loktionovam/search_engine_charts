@@ -1,0 +1,8 @@
+---
+name: mongodb-exporter
+version: 1.0.0
+description: Mongodb prometheus exporter
+maintainers:
+  - name: Aleksandr Loktionov
+    email: loktionovam@gmail.com
+appVersion: 0.6.1
