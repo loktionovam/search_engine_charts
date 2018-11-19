@@ -357,7 +357,7 @@ server:
   ingress:
     ## If true, Prometheus server Ingress will be created
     ##
-    enabled: true
+    enabled: false
 
     ## Prometheus server Ingress annotations
     ##
@@ -880,6 +880,20 @@ serverFiles:
           - source_labels: [__meta_kubernetes_service_label_app, __meta_kubernetes_namespace, __meta_kubernetes_pod_container_port_name]
             action: keep
             regex: search-engine-(production|staging)-rabbitmq;(production|staging)+;stats
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: kubernetes_namespace
+          - source_labels: [__meta_kubernetes_service_name]
+            target_label: kubernetes_name
+
+      - job_name: 'mongodb-endpoints'
+        kubernetes_sd_configs:
+          - role: endpoints
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_label_component]
+            action: keep
+            regex: mongodb_exporter
+          - action: labelmap
+            regex: __meta_kubernetes_service_label_(.+)
           - source_labels: [__meta_kubernetes_namespace]
             target_label: kubernetes_namespace
           - source_labels: [__meta_kubernetes_service_name]
