@@ -4,7 +4,11 @@
 Формат основан на [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 и этот проект придерживается [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.3.0] - 2018-11-19
+### Added
+
+- Добавлен mongodb_exporter chart
+
 ### Changed
 
 - Починено отображение графиков для mongodb, rabbitmq в grafana (k8s)
