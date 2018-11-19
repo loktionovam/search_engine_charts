@@ -1,0 +1,42 @@
+---
+kibana:
+  # base64 encoded basic auth string, by default it's admin:admin
+  auth: YWRtaW46JGFwcjEkanFaOUZKNTMkN0RRRWRweUZqRE9SbVFybHhiNERYLwoK
+  ingress:
+    enabled: true
+    hosts:
+      - kibana.loktionovam.com
+    annotations:
+      kubernetes.io/ingress.class: gitlab-nginx
+      kubernetes.io/tls-acme: "true"
+      certmanager.k8s.io/issuer: "kibana-issuer"
+      nginx.ingress.kubernetes.io/auth-type: basic
+      nginx.ingress.kubernetes.io/auth-secret: kibana-basic-auth
+      nginx.ingress.kubernetes.io/auth-realm: "Kibana Authentication Required - admin"
+    labels: {}
+    path: /
+    hosts:
+      - kibana.loktionovam.com
+    tls:
+      - secretName: kibana-tls
+        hosts:
+          - kibana.loktionovam.com
+  env:
+    ELASTICSEARCH_URL: http://logging-elasticsearch:9200
+
+es:
+  image:
+    repository: k8s.gcr.io/elasticsearch
+    tag: v5.6.4
+
+fluentd:
+  image:
+    repository: gcr.io/google-containers/fluentd-elasticsearch
+    tag: v2.0.2
+
+issuer:
+  name: kibana-issuer
+  acme:
+    email: devops@loktionovam.com
+    privateKeySecretRef:
+      name: kibana-acme-key
